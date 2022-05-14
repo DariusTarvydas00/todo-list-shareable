@@ -11,24 +11,24 @@ pipeline {
         stage("Build project"){
             parallel {
                 stage("Build Back-End"){
-                dir('todo-list-shareable-backend')
                     when {
                         anyOf {
                         changeset "src/**"
                         }
                     }
                     steps {
+                        dir('todo-list-shareable-backend')
                         sh 'npm install'
                     }
                 }
                 stage("Build Front-End"){
-                dir('todo-list-shareable-frontend')
                     when {
                         anyOf {
                         changeset "src/**"
                         }
                     }
                     steps {
+                        dir('todo-list-shareable-frontend')
                         sh 'npm install'
                     }
                 }
