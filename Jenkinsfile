@@ -8,7 +8,6 @@ pipeline {
         stage("Build project"){
             parallel {
                 stage("Build Back-End"){
-                pwd
                     when {
                         anyOf {
                         changeset "todo-list-shareable-backend/**"
