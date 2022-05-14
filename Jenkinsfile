@@ -13,7 +13,7 @@ pipeline {
                         }
                     }
                     steps {
-                        dir('todo-list-shareable-backend'){
+                        dir('todo-list-shareable-backend')
                         sh 'npm install'
                     }
                 }
@@ -23,5 +23,4 @@ pipeline {
             }
         }
     }
-
 }
