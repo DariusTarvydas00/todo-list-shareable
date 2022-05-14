@@ -14,9 +14,9 @@ pipeline {
                         }
                     }
                     steps {
-                        dir('todo-list-shareable-backend')
-                        sh 'npm install'
-                        dir('../')
+                        dir('todo-list-shareable-backend') {
+                            sh 'npm install'
+                        }
                     }
                 }
                 stage("Build Front-End"){
@@ -26,8 +26,9 @@ pipeline {
                         }
                     }
                     steps {
-                        dir('todo-list-shareable-frontend')
-                        sh 'npm install'
+                        dir('todo-list-shareable-frontend') {
+                            sh 'npm install'
+                        }
                     }
                 }
             }
