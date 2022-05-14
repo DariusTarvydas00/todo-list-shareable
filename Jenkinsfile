@@ -75,7 +75,7 @@ pipeline {
                         sh 'ls'
                         sh 'npm install'
                         sh "npm run coverage"
-                        dif('coverage'){
+                        dir('coverage'){
                         sh 'ls'
                         }
                         sh 'ls'
