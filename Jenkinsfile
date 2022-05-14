@@ -68,6 +68,7 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-frontend') {
+                        sh 'npm install'
                         sh "npm run test:unit"
                         }
                     }
