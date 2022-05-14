@@ -75,8 +75,10 @@ pipeline {
                         sh 'ls'
                         sh 'npm install'
                         sh "npm run coverage"
+                        dif('coverage'){
                         sh 'ls'
-                        sh 'mv coverage src/output'
+                        }
+                        sh 'ls'
                         }
                     }
                     post{
