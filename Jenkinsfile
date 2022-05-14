@@ -41,7 +41,7 @@ pipeline {
         }
          stage("Unit test"){
                     steps{
-                        sh "dotnet test --collect:'XPlat Code Coverage'"
+                        sh "npm test --collect:'XPlat Code Coverage'"
                     }
                 }
     }
