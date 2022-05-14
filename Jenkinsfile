@@ -7,10 +7,10 @@ pipeline {
     stages {
         stage("Build project"){
             parallel {
-                steps{
-                dir('todo-list-shareable-backend')
-                }
                 stage("Build Back-End"){
+                    steps{
+                        dir('todo-list-shareable-backend')
+                    }
                     when {
                         anyOf {
                         changeset "todo-list-shareable-backend/**"
@@ -20,10 +20,10 @@ pipeline {
                         sh 'npm install'
                     }
                 }
-                steps{
-                    dir('todo-list-shareable-frontend')
-                }
                 stage("Build Front-End"){
+                    steps{
+                        dir('todo-list-shareable-frontend')
+                    }
                     when {
                         anyOf {
                         changeset "src/**"
