@@ -50,6 +50,7 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-backend') {
+                        sh 'npm install'
                         sh "npm run test"
                         }
                     }
