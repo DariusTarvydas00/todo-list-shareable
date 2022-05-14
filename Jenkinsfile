@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
     triggers {pollSCM('*/15 * * * *')}
     tools {nodejs "Node"}
@@ -7,25 +6,22 @@ pipeline {
     stages {
         stage("Build project"){
             parallel {
-            steps {
-                dir('todo-list-shareable-backend'){
-                sh 'npm install'
-                }
                 stage("Build Back-End"){
                     when {
                         anyOf {
-                            changeset "src/**"
+                        changeset "src/**"
                         }
                     }
+                    steps {
+                        dir('todo-list-shareable-backend'){
+                        sh 'npm install'
+                    }
                 }
-                steps{
-                    sh "nest build --configuration Release"
-                    sh "docker-compose --env-file config/Test.env build api"
+                stage("Build Front-End"){
+
                 }
             }
         }
-        stage("Build Front-End"){
-
-        }
     }
+
 }
