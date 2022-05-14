@@ -53,8 +53,10 @@ pipeline {
                         }
                     }
                     post{
-                        always{
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'output/coverage/jest/cobertura-coverage.xml'])
+                        dir('todo-list-shareable-backend') {
+                            always{
+                            step([$class: 'CoberturaPublisher', coberturaReportFile: 'output/coverage/jest/cobertura-coverage.xml'])
+                            }
                         }
                     }
                 }
