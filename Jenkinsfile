@@ -1,7 +1,11 @@
 pipeline {
     agent any
-    triggers {pollSCM('*/15 * * * *')}
-    tools {nodejs "Node"}
+    triggers {
+        pollSCM('*/15 * * * *')
+    }
+    tools {
+    nodejs "Node"
+    }
 
     stages {
         stage("Build project"){
@@ -18,7 +22,7 @@ pipeline {
                     }
                 }
                 stage("Build Front-End"){
-
+                    echo 'Building front end'
                 }
             }
         }
