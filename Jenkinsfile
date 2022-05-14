@@ -13,11 +13,10 @@ pipeline {
                 stage("Build Back-End"){
                     when {
                         anyOf {
-                        changeset "src/**"
+                        changeset "todo-list-shareable-backend"
                         }
                     }
                     steps {
-                        dir('todo-list-shareable-backend')
                         sh 'npm install'
                     }
                 }
