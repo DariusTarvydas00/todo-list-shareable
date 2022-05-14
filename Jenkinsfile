@@ -20,7 +20,7 @@ pipeline {
                     }
                     steps {
                         dir('todo-list-shareable-backend') {
-                            sh 'npm build'
+                            sh 'npm run build'
                         }
                     }
                 }
