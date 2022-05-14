@@ -70,11 +70,12 @@ pipeline {
                         dir('todo-list-shareable-frontend') {
                         sh 'npm install'
                         sh "npm run test:unit"
+                        sh 'mv coverage src/output'
                         }
                     }
                     post{
                         always{
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-frontend/coverage/cobertura-coverage.xml'])
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-frontend/src/output/coverage/cobertura-coverage.xml'])
                         }
                     }
                 }
