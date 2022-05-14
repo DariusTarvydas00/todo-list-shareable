@@ -1,7 +1,12 @@
 pipeline {
     agent any
+
+    triggers{
+        pollSCM('*/15 * * * *')
+    }
+
     tools {
-    nodejs "Node"
+        nodejs "Node"
     }
 
     stages {
