@@ -51,7 +51,9 @@ pipeline {
                     steps{
                         dir('todo-list-shareable-backend') {
                         sh 'npm install'
+                        sh 'ls'
                         sh "npm run test"
+                        sh 'ls'
                         }
                     }
                     post{
@@ -73,6 +75,7 @@ pipeline {
                         sh 'ls'
                         sh 'npm install'
                         sh "npm run test:unit"
+                        sh 'ls'
                         sh 'mv coverage src/output'
                         }
                     }
