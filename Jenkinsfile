@@ -41,7 +41,9 @@ pipeline {
         }
          stage("Unit test"){
                     steps{
-                        sh "npm test --collect:'XPlat Code Coverage'"
+                    dir('todo-list-shareable-backend') {
+                                                 sh "npm test --collect:'XPlat Code Coverage'"
+                                            }
                     }
                 }
     }
