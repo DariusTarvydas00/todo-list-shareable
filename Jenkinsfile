@@ -70,6 +70,7 @@ pipeline {
                         sh 'pwd'
                         dir('todo-list-shareable-frontend') {
                         sh 'pwd'
+                        sh 'ls'
                         sh 'npm install'
                         sh "npm run test:unit"
                         sh 'mv coverage src/output'
