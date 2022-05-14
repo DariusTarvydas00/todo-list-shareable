@@ -61,7 +61,7 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-frontend') {
-                        sh "npm test --collect:'XPlat Code Coverage'"
+                        sh "npm run test:unit --collect:'XPlat Code Coverage'"
                         }
                     }
                 }
