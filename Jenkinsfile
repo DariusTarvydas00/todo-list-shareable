@@ -7,6 +7,9 @@ pipeline {
     stages {
         stage("Build project"){
             parallel {
+                steps{
+                dir('todo-list-shareable-backend')
+                }
                 stage("Build Back-End"){
                     when {
                         anyOf {
@@ -14,9 +17,11 @@ pipeline {
                         }
                     }
                     steps {
-                        dir('todo-list-shareable-backend')
                         sh 'npm install'
                     }
+                }
+                steps{
+                    dir('todo-list-shareable-frontend')
                 }
                 stage("Build Front-End"){
                     when {
@@ -25,7 +30,6 @@ pipeline {
                         }
                     }
                     steps {
-                        dir('todo-list-shareable-frontend')
                         sh 'npm install'
                     }
                 }
