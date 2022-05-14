@@ -40,11 +40,32 @@ pipeline {
             }
         }
          stage("Unit test"){
+            parallel{
+                stage("Back-End Test"){
+                    when {
+                        anyOf {
+                        changeset "todo-list-shareable-backend/**"
+                        }
+                    }
                     steps{
-                    dir('todo-list-shareable-backend') {
-                                                 sh "npm test --collect:'XPlat Code Coverage'"
-                                            }
+                        dir('todo-list-shareable-backend') {
+                        sh "npm test --collect:'XPlat Code Coverage'"
+                        }
                     }
                 }
+                stage("Front-End Test"){
+                    when {
+                        anyOf {
+                        changeset "todo-list-shareable-frontend/**"
+                        }
+                    }
+                    steps{
+                        dir('todo-list-shareable-frontend') {
+                        sh "npm test --collect:'XPlat Code Coverage'"
+                        }
+                    }
+                }
+            }
+         }
     }
 }
