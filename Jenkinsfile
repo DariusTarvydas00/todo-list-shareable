@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    publishCoverage adapters: [istanbulCoberturaAdapter('cobertura-coverage.xml')],
+        sourceFileResolver: sourceFiles('NEVER_STORE'),
+        calculateDiffForChangeRequests: true
+
     triggers{
         pollSCM('*/15 * * * *')
     }
