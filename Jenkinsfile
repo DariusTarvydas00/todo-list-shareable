@@ -39,5 +39,10 @@ pipeline {
                 }
             }
         }
+         stage("Unit test"){
+                    steps{
+                        sh "dotnet test --collect:'XPlat Code Coverage'"
+                    }
+                }
     }
 }
