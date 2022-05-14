@@ -49,7 +49,12 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-backend') {
-                        sh "npm test --collect:'XPlat Code Coverage'"
+                        sh "npm run test"
+                        }
+                    }
+                    post{
+                        always{
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'output/coverage/jest/cobertura-coverage.xml'])
                         }
                     }
                 }
