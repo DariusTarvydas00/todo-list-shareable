@@ -53,8 +53,8 @@ pipeline {
                         sh "npm run test"
                         }
                     }
+                    sh "pwd"
                     post{
-                        sh "pwd"
                         always{
                         step([$class: 'CoberturaPublisher', coberturaReportFile: 'output/coverage/jest/cobertura-coverage.xml'])
                         }
