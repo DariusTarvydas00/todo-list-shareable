@@ -83,7 +83,7 @@ pipeline {
                     }
                     post{
                         always{
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-backend/coverage/cobertura-coverage.xml'])
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-frontend/coverage/cobertura-coverage.xml'])
                         }
                     }
                 }
