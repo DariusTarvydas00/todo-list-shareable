@@ -81,7 +81,7 @@ pipeline {
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
                     reportDir: 'coverage',
-                    reportFiles: 'cobertura-coverage-frontend.xml','cobertura-coverage-backend.xml',
+                    reportFiles: 'cobertura-coverage-frontend.xml',
                     reportName: 'Front-End Report'
                     ]
                     }
