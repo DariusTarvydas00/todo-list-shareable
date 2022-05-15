@@ -52,14 +52,26 @@ pipeline {
                         dir('todo-list-shareable-backend') {
                         sh 'npm install'
                         sh "npm run test"
-                            dir('src/output/coverage/jest'){
-                            sh 'mv cobertura-coverage.xml cobertura-coverage-backend.xml'
+                            dir('coverage'){
+                                sh 'mv cobertura-coverage.xml cobertura-coverage-backend.xml'
                             }
                         }
                     }
                     post{
-                        always{
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-backend/src/output/coverage/jest/cobertura-coverage-backend.xml'])
+                        success{
+                        publishHTML target: [
+                                      allowMissing: false,
+                                      alwaysLinkToLastBuild: false,
+                                      keepAll: true,
+                                      reportDir: 'coverage',
+                                      reportFiles: 'cobertura-coverage-backend.xml',
+                                      reportName: 'Back-End Report'
+                                    ]
+                        }
+                    }
+                    post {
+                        always {
+                          echo "Send notifications for result: ${currentBuild.result}"
                         }
                     }
                 }
@@ -74,23 +86,27 @@ pipeline {
                         sh 'npm install'
                         sh "npm run coverage"
                             dir('coverage'){
-                            sh 'mv cobertura-coverage.xml cobertura-coverage-frontend.xml'
+                            sh 'mv cobertura-coverage.xml cobertura-coverage-frontend'
                             }
                         }
-                         publishHTML target: [
-                                    allowMissing: false,
-                                    alwaysLinkToLastBuild: false,
-                                    keepAll: true,
-                                    reportDir: 'coverage',
-                                    reportFiles: 'index.html',
-                                    reportName: 'RCov Report'
-                                  ]
                     }
                     post{
-                        always{
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-frontend/coverage/cobertura-coverage-frontend.xml'])
-                        }
-                    }
+                                            success{
+                                            publishHTML target: [
+                                                          allowMissing: false,
+                                                          alwaysLinkToLastBuild: false,
+                                                          keepAll: true,
+                                                          reportDir: 'coverage',
+                                                          reportFiles: 'cobertura-coverage-frontend.xml',
+                                                          reportName: 'Front-End Report'
+                                                        ]
+                                            }
+                                        }
+                                        post {
+                                            always {
+                                              echo "Send notifications for result: ${currentBuild.result}"
+                                            }
+                                        }
                 }
             }
          }
