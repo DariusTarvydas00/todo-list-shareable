@@ -22,7 +22,7 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'npm install'
-                            load "$JENKINS_HOME/jobvars.env"
+                            load "jobvars.env"
 
                                             withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
 
