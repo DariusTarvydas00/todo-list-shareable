@@ -10,6 +10,7 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
     coverage: {
+      all:true,
       reporter:['cobertura']
     }
     // This doesn't work either
