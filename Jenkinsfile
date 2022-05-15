@@ -56,12 +56,12 @@ pipeline {
                         sh "npm run test"
                         sh 'pwd'
                         sh 'ls'
-                            dir('coverage'){
-                            sh 'pwd'
-                            sh 'ls'
-                                sh 'mv cobertura-coverage.xml cobertura-coverage-backend.xml'
-                            }
                         }
+                        dir('coverage'){
+                                                    sh 'pwd'
+                                                    sh 'ls'
+                                                        sh 'mv cobertura-coverage.xml cobertura-coverage-backend.xml'
+                                                    }
                     }
                     post{
                         success{
@@ -90,12 +90,13 @@ pipeline {
                         sh "npm run coverage"
                         sh 'pwd'
                         sh 'ls'
-                            dir('coverage'){
-                            sh 'pwd'
-                            sh 'ls'
-                            sh 'mv cobertura-coverage.xml cobertura-coverage-frontend.xml'
-                            }
+
                         }
+                        dir('coverage'){
+                                                    sh 'pwd'
+                                                    sh 'ls'
+                                                    sh 'mv cobertura-coverage.xml cobertura-coverage-frontend.xml'
+                                                    }
                     }
                     post{
                                                         success{
