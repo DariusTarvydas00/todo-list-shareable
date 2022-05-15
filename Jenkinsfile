@@ -13,23 +13,6 @@ pipeline {
         stage("Build project"){
             parallel {
                 stage("Build Back-End"){
-                    steps{
-                        dir("todo-list-shareable-backend/"){
-                        sh 'npm install'
-                        }
-                    }
-                }
-                stage('Publish'){
-                    steps{
-                        dir("todo-list-shareable-backend/"){
-                        sh 'npm publish'
-                        }
-                    }
-                }
-                stage('build'){
-                steps{
-                    dir("todo-list-shareable-backend/")
-                }
                     when {
                         anyOf {
                         changeset "todo-list-shareable-backend/**"
@@ -38,10 +21,12 @@ pipeline {
                     }
                     steps {
                         dir('todo-list-shareable-backend') {
+                            sh 'npm install'
+                            sh 'npm publish'
                             sh 'npm run build'
+                            sh 'npm publish'
                         }
                     }
-                }
                 }
                 stage("Build Front-End"){
                     when {
@@ -86,3 +71,4 @@ pipeline {
             }
          }
     }
+}
