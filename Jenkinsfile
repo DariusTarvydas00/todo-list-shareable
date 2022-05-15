@@ -56,7 +56,7 @@ pipeline {
                     post{
                        always {
                                  step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml'])
-                    }
+                    }}
                 }
                 stage("Front-End Test"){
                     when {
