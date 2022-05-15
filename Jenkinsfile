@@ -50,13 +50,27 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-backend') {
+                        sh '-------------------------------111111111111111111111-------------------------'
                         sh 'npm install'
+                        sh '-------------------------------2222222222222222221-------------------------'
                         sh 'pwd'
                         sh 'ls'
+
                         sh "npm run test"
+                        sh '-------------------------------33333333333333333333333333333----------------------'
                         sh 'pwd'
                         sh 'ls'
+                        sh '-------------------------------44444444444444444444444------------------'
+                        dir('coverage') {
+                            sh 'pwd'
+                                                    sh 'ls'
                         }
+                        }
+                        dir('coverage') {
+                        sh '------------------------------77777777777777777777777771111-------------------------'
+                                                    sh 'pwd'
+                                                                            sh 'ls'
+                                                }
                     }
                     post{
                         success{
@@ -64,7 +78,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
-                        reportDir: 'todo-list-shareable-backend/coverage',
+                        reportDir: 'coverage',
                         reportFiles: 'cobertura-coverage.xml',
                         reportName: 'Back-End Report'
                         ]
