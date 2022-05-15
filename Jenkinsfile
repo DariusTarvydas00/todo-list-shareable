@@ -52,7 +52,7 @@ pipeline {
                         dir('todo-list-shareable-backend') {
                         sh 'npm install'
                         sh "npm run test"
-                            dir('coverage'){
+                            dir('coverage/back-end-coverage'){
                                 sh 'mv cobertura-coverage.xml ../cobertura-coverage-backend.xml'
                             }
                         }
@@ -80,7 +80,7 @@ pipeline {
                         dir('todo-list-shareable-frontend') {
                         sh 'npm install'
                         sh "npm run coverage"
-                            dir('coverage'){
+                            dir('coverage/front-end-coverage'){
                             sh 'mv cobertura-coverage.xml ../cobertura-coverage-frontend.xml'
                             }
                         }
