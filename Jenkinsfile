@@ -51,6 +51,7 @@ pipeline {
                     steps{
                         dir('todo-list-shareable-backend') {
                         sh 'mvn clean cobertura:cobertura'
+                        }
                     }
                 }
                 stage("Front-End Test"){
