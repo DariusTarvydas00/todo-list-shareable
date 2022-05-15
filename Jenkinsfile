@@ -54,16 +54,8 @@ pipeline {
                         }
                     }
                     post{
-                        success{
-                        publishHTML target: [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll: true,
-                        reportDir: 'todo-list-shareable-backend',
-                        reportFiles: 'cobertura-coverage.xml',
-                        reportName: 'Back-End Report'
-                        ]
-                        }
+                       always {
+                                 step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml'])
                     }
                 }
                 stage("Front-End Test"){
