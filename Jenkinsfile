@@ -22,7 +22,6 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'npm run build'
-                            sh 'npm test'
                         }
                     }
                 }
@@ -53,6 +52,7 @@ pipeline {
                         sh 'npm install'
                         sh 'npm run test'
                         }
+                    }
                 }
                 stage("Front-End Test"){
                     when {
@@ -68,6 +68,6 @@ pipeline {
                     }
                 }
             }
-        }
+         }
     }
 }
