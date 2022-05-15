@@ -69,7 +69,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
-                        reportDir: 'coverage/back-end-coverage',
+                        reportDir: '../coverage/back-end-coverage',
                         reportFiles: 'cobertura-coverage-backend.xml',
                         reportName: 'Back-End Report'
                         ]
@@ -103,7 +103,7 @@ pipeline {
                                                         allowMissing: false,
                                                         alwaysLinkToLastBuild: false,
                                                         keepAll: true,
-                                                        reportDir: 'coverage/front-end-coverage',
+                                                        reportDir: '../coverage/front-end-coverage',
                                                         reportFiles: 'cobertura-coverage-frontend.xml',
                                                         reportName: 'Front-End Report'
                                                         ]
