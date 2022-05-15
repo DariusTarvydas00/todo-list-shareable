@@ -49,7 +49,6 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-backend') {
-                        sh 'npm install'
                         sh 'npm run test'
                         }
                     }
@@ -62,7 +61,6 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-frontend') {
-                        sh 'npm install'
                         sh "npm run coverage"
                         }
                     }
