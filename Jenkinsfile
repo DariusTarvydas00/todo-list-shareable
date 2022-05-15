@@ -22,7 +22,6 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'npm run build'
-                            sh 'npm test'
                         }
                     }
                 }
