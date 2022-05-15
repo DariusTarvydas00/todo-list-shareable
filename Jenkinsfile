@@ -22,9 +22,14 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'npm install'
-                            sh 'npm publish'
-                            sh 'npm run build'
-                            sh 'npm publish'
+                            load "$JENKINS_HOME/jobvars.env"
+
+                                            withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
+
+                                                sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> ~/.npmrc'
+                                                sh 'npm publish'
+
+                                            }
                         }
                     }
                 }
