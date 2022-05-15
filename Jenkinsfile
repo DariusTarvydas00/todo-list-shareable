@@ -57,6 +57,18 @@ pipeline {
                             }
                         }
                     }
+                    post{
+                        success{
+                        publishHTML target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'coverage',
+                        reportFiles: 'cobertura-coverage-backend.xml',
+                        reportName: 'Back-End Report'
+                        ]
+                        }
+                    }
                 }
                 stage("Front-End Test"){
                     when {
@@ -73,20 +85,19 @@ pipeline {
                             }
                         }
                     }
+                    post{
+                                                        success{
+                                                        publishHTML target: [
+                                                        allowMissing: false,
+                                                        alwaysLinkToLastBuild: false,
+                                                        keepAll: true,
+                                                        reportDir: 'coverage',
+                                                        reportFiles: 'cobertura-coverage-frontend.xml',
+                                                        reportName: 'Front-End Report'
+                                                        ]
+                                                        }
+                                                    }
                 }
-                post{
-                    success{
-                    publishHTML target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll: true,
-                    reportDir: 'coverage',
-                    reportFiles: 'cobertura-coverage-frontend.xml',
-                    reportName: 'Front-End Report'
-                    ]
-                    }
-                }
-
             }
          }
     }
