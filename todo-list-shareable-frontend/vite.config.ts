@@ -10,7 +10,6 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
     coverage: {
-      reportsDirectory:'../../coverage/front-end',
       all:true
     }
     // This doesn't work either
