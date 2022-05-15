@@ -62,6 +62,7 @@ pipeline {
                                                 ]
                                                 }
                                             }
+                        }
                     }
                 }
                 stage("Front-End Test"){
