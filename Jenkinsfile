@@ -69,11 +69,6 @@ pipeline {
                                     ]
                         }
                     }
-                    post {
-                        always {
-                          echo "Send notifications for result: ${currentBuild.result}"
-                        }
-                    }
                 }
                 stage("Front-End Test"){
                     when {
@@ -100,11 +95,6 @@ pipeline {
                                                           reportFiles: 'cobertura-coverage-frontend.xml',
                                                           reportName: 'Front-End Report'
                                                         ]
-                                            }
-                                        }
-                                        post {
-                                            always {
-                                              echo "Send notifications for result: ${currentBuild.result}"
                                             }
                                         }
                 }
