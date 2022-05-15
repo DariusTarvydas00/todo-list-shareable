@@ -11,7 +11,7 @@ export default defineConfig({
     environment: 'happy-dom',
     coverage: {
       all:true,
-      reporter:['cobertura']
+      reporter:['cobertura',]
     }
     // This doesn't work either
     // coverage: {

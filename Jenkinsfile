@@ -51,14 +51,15 @@ pipeline {
                     steps{
                         dir('todo-list-shareable-backend') {
                         sh 'npm install'
-                        sh 'ls'
                         sh "npm run test"
-                        sh 'ls'
+                            dir('src/output/coverage/jest'){
+                            sh 'mv cobertura-coverage.xml cobertura-coverage-backend.xml'
+                            }
                         }
                     }
                     post{
                         always{
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-backend/src/output/coverage/jest/cobertura-coverage.xml'])
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-backend/src/output/coverage/jest/cobertura-coverage-backend.xml'])
                         }
                     }
                 }
@@ -69,21 +70,17 @@ pipeline {
                         }
                     }
                     steps{
-                        sh 'pwd'
                         dir('todo-list-shareable-frontend') {
-                        sh 'pwd'
-                        sh 'ls'
                         sh 'npm install'
                         sh "npm run coverage"
-                        dir('coverage'){
-                        sh 'ls'
-                        }
-                        sh 'ls'
+                            dir('coverage'){
+                            sh 'mv cobertura-coverage.xml cobertura-coverage-frontend.xml'
+                            }
                         }
                     }
                     post{
                         always{
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-frontend/coverage/cobertura-coverage.xml'])
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-frontend/coverage/cobertura-coverage-frontend.xml'])
                         }
                     }
                 }
