@@ -51,8 +51,14 @@ pipeline {
                     steps{
                         dir('todo-list-shareable-backend') {
                         sh 'npm install'
+                        sh 'pwd'
+                        sh 'ls'
                         sh "npm run test"
+                        sh 'pwd'
+                        sh 'ls'
                             dir('coverage/back-end-coverage'){
+                            sh 'pwd'
+                            sh 'ls'
                                 sh 'mv cobertura-coverage.xml ../cobertura-coverage-backend.xml'
                             }
                         }
@@ -79,8 +85,14 @@ pipeline {
                     steps{
                         dir('todo-list-shareable-frontend') {
                         sh 'npm install'
+                        sh 'pwd'
+                        sh 'ls'
                         sh "npm run coverage"
+                        sh 'pwd'
+                        sh 'ls'
                             dir('coverage/front-end-coverage'){
+                            sh 'pwd'
+                            sh 'ls'
                             sh 'mv cobertura-coverage.xml ../cobertura-coverage-frontend.xml'
                             }
                         }
