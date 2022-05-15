@@ -50,13 +50,15 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-backend') {
+                        sh 'npm install'
                         sh 'npm run test'
                         }
                     }
                     post{
-                       always {
-                                 step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-backend/cobertura-coverage.xml'])
-                    }}
+                        always {
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-backend/cobertura-coverage.xml'])
+                        }
+                    }
                 }
                 stage("Front-End Test"){
                     when {
@@ -67,15 +69,14 @@ pipeline {
                     steps{
                         dir('todo-list-shareable-frontend') {
                         sh 'npm install'
-                        sh 'pwd'
-                        sh 'ls'
                         sh "npm run coverage"
-                        sh 'pwd'
-                        sh 'ls'
-
                         }
                     }
-
+                    post{
+                        always {
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-frontend/cobertura-coverage.xml'])
+                        }
+                    }
                 }
             }
          }
