@@ -59,7 +59,7 @@ pipeline {
                             dir('../coverage/back-end-coverage'){
                             sh 'pwd'
                             sh 'ls'
-                                sh 'mv cobertura-coverage.xml ../cobertura-coverage-backend.xml'
+                                sh 'mv cobertura-coverage.xml cobertura-coverage-backend.xml'
                             }
                         }
                     }
@@ -69,7 +69,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
-                        reportDir: 'coverage',
+                        reportDir: 'coverage/back-end-coverage',
                         reportFiles: 'cobertura-coverage-backend.xml',
                         reportName: 'Back-End Report'
                         ]
@@ -93,7 +93,7 @@ pipeline {
                             dir('../coverage/front-end-coverage'){
                             sh 'pwd'
                             sh 'ls'
-                            sh 'mv cobertura-coverage.xml ../cobertura-coverage-frontend.xml'
+                            sh 'mv cobertura-coverage.xml cobertura-coverage-frontend.xml'
                             }
                         }
                     }
@@ -103,7 +103,7 @@ pipeline {
                                                         allowMissing: false,
                                                         alwaysLinkToLastBuild: false,
                                                         keepAll: true,
-                                                        reportDir: 'coverage',
+                                                        reportDir: 'coverage/front-end-coverage',
                                                         reportFiles: 'cobertura-coverage-frontend.xml',
                                                         reportName: 'Front-End Report'
                                                         ]
