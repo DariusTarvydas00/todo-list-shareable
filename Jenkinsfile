@@ -81,7 +81,7 @@ pipeline {
                         sh 'npm install'
                         sh "npm run coverage"
                             dir('coverage'){
-                            sh 'mv cobertura-coverage.xml ../cobertura-coverage-frontend'
+                            sh 'mv cobertura-coverage.xml ../cobertura-coverage-frontend.xml'
                             }
                         }
                     }
