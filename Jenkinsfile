@@ -22,6 +22,7 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'npm install'
+                            sh 'npm login'
                             load "jobvars.env"
 
                                             withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
