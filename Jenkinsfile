@@ -57,11 +57,6 @@ pipeline {
                         sh 'pwd'
                         sh 'ls'
                         }
-                        dir('coverage'){
-                                                    sh 'pwd'
-                                                    sh 'ls'
-                                                        sh 'mv cobertura-coverage.xml cobertura-coverage-backend.xml'
-                                                    }
                     }
                     post{
                         success{
@@ -70,7 +65,7 @@ pipeline {
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
                         reportDir: 'coverage',
-                        reportFiles: 'cobertura-coverage-backend.xml',
+                        reportFiles: 'cobertura-coverage.xml',
                         reportName: 'Back-End Report'
                         ]
                         }
@@ -92,11 +87,6 @@ pipeline {
                         sh 'ls'
 
                         }
-                        dir('coverage'){
-                                                    sh 'pwd'
-                                                    sh 'ls'
-                                                    sh 'mv cobertura-coverage.xml cobertura-coverage-frontend.xml'
-                                                    }
                     }
                     post{
                                                         success{
@@ -104,8 +94,8 @@ pipeline {
                                                         allowMissing: false,
                                                         alwaysLinkToLastBuild: false,
                                                         keepAll: true,
-                                                        reportDir: '../coverage',
-                                                        reportFiles: 'cobertura-coverage-frontend.xml',
+                                                        reportDir: 'coverage',
+                                                        reportFiles: 'cobertura-coverage.xml',
                                                         reportName: 'Front-End Report'
                                                         ]
                                                         }
