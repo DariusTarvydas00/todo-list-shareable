@@ -50,8 +50,18 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-backend') {
-                        sh 'mvn clean cobertura:cobertura'
-                        }
+                        post{
+                                                success{
+                                                publishHTML target: [
+                                                allowMissing: false,
+                                                alwaysLinkToLastBuild: false,
+                                                keepAll: true,
+                                                reportDir: '',
+                                                reportFiles: 'cobertura-coverage.xml',
+                                                reportName: 'Back-End Report'
+                                                ]
+                                                }
+                                            }
                     }
                 }
                 stage("Front-End Test"){
