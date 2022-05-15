@@ -1,7 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "esnext"
-  },
   "files": [],
   "references": [
     {

@@ -6,19 +6,9 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  test: {
-    outputFile: 'coverage/sad.xml',
-    globals: true,
-    environment: 'happy-dom',
-    coverage: {
-      reportsDirectory:'../coverage',
-      all:true,
-      reporter:['cobertura']
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-    // This doesn't work either
-    // coverage: {
-    //   include: ['src/**/*.{ts,vue}'],
-    //   all: true,
-    // } as any
-  },
+  }
 })
