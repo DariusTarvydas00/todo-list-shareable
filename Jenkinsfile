@@ -64,7 +64,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
-                        reportDir: 'coverage',
+                        reportDir: 'todo-list-shareable-backend/coverage',
                         reportFiles: 'cobertura-coverage.xml',
                         reportName: 'Back-End Report'
                         ]
@@ -94,7 +94,7 @@ pipeline {
                                                         allowMissing: false,
                                                         alwaysLinkToLastBuild: false,
                                                         keepAll: true,
-                                                        reportDir: 'coverage',
+                                                        reportDir: 'todo-list-shareable-frontend/coverage',
                                                         reportFiles: 'cobertura-coverage.xml',
                                                         reportName: 'Front-End Report'
                                                         ]
