@@ -80,10 +80,17 @@ pipeline {
                         }
                     }
                     post{
-                        always {
-                        step([$class: 'CoberturaPublisher', reportName:'fr', coberturaReportFile: 'todo-list-shareable-frontend/coverage/cobertura-coverage.xml'])
-                        }
-                    }
+                                        success {
+                                                  publishHTML target: [
+                                                      allowMissing: false,
+                                                      alwaysLinkToLastBuild: false,
+                                                      keepAll: true,
+                                                      reportDir: 'todo-list-shareable-frontend/coverage',
+                                                      reportFiles: 'cobertura-coverage.xml',
+                                                      reportName: 'RCovd1 Report'
+                                                    ]
+                                                }
+                                        }
                 }
             }
          }
