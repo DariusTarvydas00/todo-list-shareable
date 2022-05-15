@@ -26,6 +26,7 @@ pipeline {
                         }
                     }
                 }
+                stage('build'){
                 steps{
                     dir("todo-list-shareable-backend/")
                 }
@@ -40,6 +41,7 @@ pipeline {
                             sh 'npm run build'
                         }
                     }
+                }
                 }
                 stage("Build Front-End"){
                     when {
