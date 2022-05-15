@@ -50,20 +50,21 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-backend') {
+                        sh 'npm run test'
+                        }
                     }
                     post{
-                                                                    success{
-                                                                    publishHTML target: [
-                                                                    allowMissing: false,
-                                                                    alwaysLinkToLastBuild: false,
-                                                                    keepAll: true,
-                                                                    reportDir: 'todo-list-shareable-backend',
-                                                                    reportFiles: 'cobertura-coverage.xml',
-                                                                    reportName: 'Back-End Report'
-                                                                    ]
-                                                                    }
-                                                                }
-                                            }
+                        success{
+                        publishHTML target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'todo-list-shareable-backend',
+                        reportFiles: 'cobertura-coverage.xml',
+                        reportName: 'Back-End Report'
+                        ]
+                        }
+                    }
                 }
                 stage("Front-End Test"){
                     when {
