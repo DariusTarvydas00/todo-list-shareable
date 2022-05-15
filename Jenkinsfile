@@ -53,20 +53,8 @@ pipeline {
                         sh 'npm install'
                         sh "npm run test"
                             dir('coverage'){
-                                sh 'mv cobertura-coverage.xml cobertura-coverage-backend.xml'
+                                sh 'mv cobertura-coverage.xml ../cobertura-coverage-backend.xml'
                             }
-                        }
-                    }
-                    post{
-                        success{
-                        publishHTML target: [
-                                      allowMissing: false,
-                                      alwaysLinkToLastBuild: false,
-                                      keepAll: true,
-                                      reportDir: 'coverage',
-                                      reportFiles: 'cobertura-coverage-backend.xml',
-                                      reportName: 'Back-End Report'
-                                    ]
                         }
                     }
                 }
@@ -81,23 +69,24 @@ pipeline {
                         sh 'npm install'
                         sh "npm run coverage"
                             dir('coverage'){
-                            sh 'mv cobertura-coverage.xml cobertura-coverage-frontend'
+                            sh 'mv cobertura-coverage.xml ../cobertura-coverage-frontend'
                             }
                         }
                     }
-                    post{
-                                            success{
-                                            publishHTML target: [
-                                                          allowMissing: false,
-                                                          alwaysLinkToLastBuild: false,
-                                                          keepAll: true,
-                                                          reportDir: 'coverage',
-                                                          reportFiles: 'cobertura-coverage-frontend.xml',
-                                                          reportName: 'Front-End Report'
-                                                        ]
-                                            }
-                                        }
                 }
+                post{
+                    success{
+                    publishHTML target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'coverage',
+                    reportFiles: 'cobertura-coverage-frontend.xml','cobertura-coverage-backend.xml',
+                    reportName: 'Front-End Report'
+                    ]
+                    }
+                }
+
             }
          }
     }
