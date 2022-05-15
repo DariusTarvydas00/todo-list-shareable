@@ -55,7 +55,7 @@ pipeline {
                     }
                     post{
                        always {
-                                 step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml'])
+                                 step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-backend/cobertura-coverage.xml'])
                     }}
                 }
                 stage("Front-End Test"){
