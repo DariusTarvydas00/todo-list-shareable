@@ -56,7 +56,7 @@ pipeline {
                         sh "npm run test"
                         sh 'pwd'
                         sh 'ls'
-                            dir('../coverage/back-end-coverage'){
+                            dir('coverage'){
                             sh 'pwd'
                             sh 'ls'
                                 sh 'mv cobertura-coverage.xml cobertura-coverage-backend.xml'
@@ -69,7 +69,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
-                        reportDir: '../coverage/back-end-coverage',
+                        reportDir: 'coverage',
                         reportFiles: 'cobertura-coverage-backend.xml',
                         reportName: 'Back-End Report'
                         ]
@@ -90,7 +90,7 @@ pipeline {
                         sh "npm run coverage"
                         sh 'pwd'
                         sh 'ls'
-                            dir('../coverage/front-end-coverage'){
+                            dir('coverage'){
                             sh 'pwd'
                             sh 'ls'
                             sh 'mv cobertura-coverage.xml cobertura-coverage-frontend.xml'

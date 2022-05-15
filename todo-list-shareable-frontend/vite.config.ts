@@ -10,7 +10,7 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
     coverage: {
-      reportsDirectory:'../coverage/front-end-coverage',
+      reportsDirectory:'../coverage',
       all:true,
       reporter:['cobertura']
     }
