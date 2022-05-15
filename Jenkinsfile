@@ -22,6 +22,7 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'npm run build'
+                            sh 'npm test'
                         }
                     }
                 }
@@ -52,15 +53,6 @@ pipeline {
                         sh 'npm install'
                         sh 'npm run test'
                         }
-                        dir('../coverage'){
-                        sh 'mv cobertura-coverage.xml be.xml'
-                        }
-                    }
-                    post{
-                        always {
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'reports/test-report-back-end.xml'])
-                        }
-                    }
                 }
                 stage("Front-End Test"){
                     when {
@@ -73,7 +65,6 @@ pipeline {
                         sh 'npm install'
                         sh "npm run coverage"
                         }
-                    }
                 }
             }
          }
