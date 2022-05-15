@@ -54,18 +54,6 @@ pipeline {
                         sh 'npm run test'
                         }
                     }
-                    post{
-                    success {
-                              publishHTML target: [
-                                  allowMissing: false,
-                                  alwaysLinkToLastBuild: false,
-                                  keepAll: true,
-                                  reportDir: 'todo-list-shareable-backend/coverage',
-                                  reportFiles: 'cobertura-coverage.xml',
-                                  reportName: 'RCov1 Report'
-                                ]
-                            }
-                    }
                 }
                 stage("Front-End Test"){
                     when {
@@ -79,18 +67,20 @@ pipeline {
                         sh "npm run coverage"
                         }
                     }
-                    post{
-                                        success {
-                                                  publishHTML target: [
-                                                      allowMissing: false,
-                                                      alwaysLinkToLastBuild: false,
-                                                      keepAll: true,
-                                                      reportDir: 'todo-list-shareable-frontend/coverage',
-                                                      reportFiles: 'cobertura-coverage.xml',
-                                                      reportName: 'RCovd1 Report'
-                                                    ]
-                                                }
-                                        }
+                }
+                stage("report"){
+                post{
+                                                        success {
+                                                                  publishHTML target: [
+                                                                      allowMissing: false,
+                                                                      alwaysLinkToLastBuild: false,
+                                                                      keepAll: true,
+                                                                      reportDir: 'coverage',
+                                                                      reportFiles: '*.xml',
+                                                                      reportName: 'RCovd1 Report'
+                                                                    ]
+                                                                }
+                                                        }
                 }
             }
          }
