@@ -88,18 +88,7 @@ pipeline {
 
                         }
                     }
-                    post{
-                                                        success{
-                                                        publishHTML target: [
-                                                        allowMissing: false,
-                                                        alwaysLinkToLastBuild: false,
-                                                        keepAll: true,
-                                                        reportDir: 'todo-list-shareable-frontend/coverage',
-                                                        reportFiles: 'cobertura-coverage.xml',
-                                                        reportName: 'Front-End Report'
-                                                        ]
-                                                        }
-                                                    }
+
                 }
             }
          }
