@@ -55,17 +55,10 @@ pipeline {
                         }
                     }
                     post{
-                    success {
-                              publishHTML target: [
-                                  allowMissing: false,
-                                  alwaysLinkToLastBuild: false,
-                                  keepAll: true,
-                                  reportDir: 'todo-list-shareable-backend',
-                                  reportFiles: 'cobertura-coverage.xml',
-                                  reportName: 'RCov1 Report'
-                                ]
-                            }
-                    }
+                                            always {
+                                            step([$class: 'CoberturaPublisher', reportName:'be', coberturaReportFile: 'todo-list-shareable-frontend/cobertura-coverage.xml'])
+                                            }
+                                        }
                 }
                 stage("Front-End Test"){
                     when {
@@ -81,7 +74,7 @@ pipeline {
                     }
                     post{
                         always {
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'todo-list-shareable-frontend/coverage/cobertura-coverage.xml'])
+                        step([$class: 'CoberturaPublisher', reportName:'fr', coberturaReportFile: 'todo-list-shareable-frontend/coverage/cobertura-coverage.xml'])
                         }
                     }
                 }
