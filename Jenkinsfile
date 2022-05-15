@@ -53,6 +53,14 @@ pipeline {
                         sh 'npm install'
                         sh 'npm run test'
                         }
+                        dir('../coverage'){
+                        sh 'mv cobertura-coverage.xml be.xml'
+                        }
+                    }
+                    post{
+                        always {
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/be.xml'])
+                        }
                     }
                 }
                 stage("Front-End Test"){
@@ -66,21 +74,15 @@ pipeline {
                         sh 'npm install'
                         sh "npm run coverage"
                         }
+                        dir('../coverage'){
+                                                sh 'mv cobertura-coverage.xml fe.xml'
+                                                }
                     }
-                }
-                stage("report"){
-                post{
-                                                        success {
-                                                                  publishHTML target: [
-                                                                      allowMissing: false,
-                                                                      alwaysLinkToLastBuild: false,
-                                                                      keepAll: true,
-                                                                      reportDir: 'coverage',
-                                                                      reportFiles: '*.xml',
-                                                                      reportName: 'RCovd1 Report'
-                                                                    ]
-                                                                }
-                                                        }
+                    post{
+                        always {
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/fe.xml'])
+                        }
+                    }
                 }
             }
          }
