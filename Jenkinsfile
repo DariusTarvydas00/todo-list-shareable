@@ -65,8 +65,9 @@ pipeline {
                         sh 'npm install'
                         sh "npm run coverage"
                         }
+                    }
                 }
             }
-         }
+        }
     }
 }
