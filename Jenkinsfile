@@ -61,7 +61,7 @@ pipeline {
                     }
                     steps{
                         dir('todo-list-shareable-frontend') {
-                        sh "npm run coverage"
+                        sh "npm run test:unit"
                         }
                     }
                 }
