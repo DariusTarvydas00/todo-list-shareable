@@ -21,13 +21,17 @@ pipeline {
                     }
                     steps {
                         dir('todo-list-shareable-backend') {
-                            sh 'npm install'
-                            sh 'npm run build'
-                            sh 'ls'
                             sh 'docker build .'
-                            sh 'ls'
                         }
                     }
+                }
+                stage("Setup manual test env"){
+                steps{
+                    dir('todo-list-shareable-backend') {
+                        sh 'docker-compose --env-file.environment/test-manual.env down'
+                        sh 'docker-compose --env-file.environment/test-manual.env up'
+                    }
+                }
                 }
                 stage("Build Front-End"){
                     when {
