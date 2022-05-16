@@ -22,15 +22,8 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'npm install'
-                            sh 'npm login'
-                            load "jobvars.env"
-
-                                            withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
-
-                                                sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> ~/.npmrc'
-                                                sh 'npm publish'
-
-                                            }
+                            sh 'npm build'
+                            sh 'docker build .'
                         }
                     }
                 }
