@@ -20,7 +20,8 @@ pipeline {
                     }
                     steps {
                         dir('todo-list-shareable-backend') {
-                            sh 'docker build .'
+                            sh 'docker build -t backend .'
+                            sh 'docker run backend'
                         }
                     }
                 }
@@ -43,7 +44,6 @@ pipeline {
                             dir('todo-list-shareable-backend') {
                                 sh 'docker-compose --env-file environments/test-manual.env down'
                                 sh 'docker-compose --env-file environments/test-manual.env up -d'
-                                docker run -d -p
                             }
                         }
                         }

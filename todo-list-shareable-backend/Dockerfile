@@ -13,4 +13,4 @@ COPY package*.json ./
 RUN npm install --only=production
 COPY . .
 COPY --from=development /usr/src/app/todo-list-shareable-backend/dist ./dist
-CMD ["npm", "start"]
+CMD ["node", "dist/main"]
