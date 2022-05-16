@@ -16,7 +16,6 @@ pipeline {
                     when {
                         anyOf {
                         changeset "todo-list-shareable-backend/**"
-                        changeset "todo-list-shareable-backend/src/**"
                         }
                     }
                     steps {
