@@ -43,6 +43,7 @@ pipeline {
                             dir('todo-list-shareable-backend') {
                                 sh 'docker-compose --env-file environments/test-manual.env down'
                                 sh 'docker-compose --env-file environments/test-manual.env up -d'
+                                docker run -d -p
                             }
                         }
                         }
