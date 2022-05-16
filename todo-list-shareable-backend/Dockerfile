@@ -2,7 +2,7 @@ FROM node:latest As development
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install --only=development
-COPY . .
+COPY .. .
 RUN npm run build
 
 FROM node:latest As production
@@ -11,6 +11,6 @@ ENV NODE_ENV=${NODE_ENV}
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install --only=production
-COPY . .
+COPY .. .
 COPY --from=development /usr/src/app/dist ./dist
 CMD["node", "todo-list-shareable-backend/dist/main"]
