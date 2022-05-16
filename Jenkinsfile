@@ -22,7 +22,7 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'npm install'
-                            sh 'nest build'
+                            sh 'npm run build'
                             sh 'docker build .'
                         }
                     }
