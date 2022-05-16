@@ -25,14 +25,6 @@ pipeline {
                         }
                     }
                 }
-                stage("Setup manual test env"){
-                steps{
-                    dir('todo-list-shareable-backend') {
-                        sh 'docker-compose --env-file.environment/test-manual.env down'
-                        sh 'docker-compose --env-file.environment/test-manual.env up'
-                    }
-                }
-                }
                 stage("Build Front-End"){
                     when {
                         anyOf {
@@ -47,6 +39,14 @@ pipeline {
                 }
             }
         }
+        stage("Setup manual test env"){
+                        steps{
+                            dir('todo-list-shareable-backend') {
+                                sh 'docker-compose --env-file.environment/test-manual.env down'
+                                sh 'docker-compose --env-file.environment/test-manual.env up'
+                            }
+                        }
+                        }
          stage("Unit test"){
             parallel{
                 stage("Back-End Test"){
