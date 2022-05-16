@@ -2,7 +2,7 @@ FROM node:latest As development
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install --only=development
-COPY .. .
+COPY . .
 RUN npm run build
 
 FROM node:latest As production
