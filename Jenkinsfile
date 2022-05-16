@@ -23,7 +23,9 @@ pipeline {
                         dir('todo-list-shareable-backend') {
                             sh 'npm install'
                             sh 'npm run build'
+                            sh 'ls'
                             sh 'docker build .'
+                            sh 'ls'
                         }
                     }
                 }
