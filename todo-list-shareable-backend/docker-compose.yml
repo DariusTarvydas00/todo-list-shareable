@@ -5,4 +5,4 @@ services:
     build: .
     image: "localhost:7002/todo-list-shareable-backend:${TAG}"
     ports:
-    - "${PORT_NUMBER}:80"
+    - "4001:8081"
