@@ -42,8 +42,8 @@ pipeline {
         stage("Setup manual test env"){
                         steps{
                             dir('todo-list-shareable-backend') {
-                                sh 'docker-compose --env-file.environment/test-manual.env down'
-                                sh 'docker-compose --env-file.environment/test-manual.env up'
+                                sh 'docker-compose --env-file environment/test-manual.env down'
+                                sh 'docker-compose --env-file environment/test-manual.env up'
                             }
                         }
                         }
