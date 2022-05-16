@@ -32,7 +32,7 @@ pipeline {
                     }
                     steps {
                         dir('todo-list-shareable-frontend') {
-                            sh 'npm run build'
+                            sh 'docker build .'
                         }
                     }
                 }

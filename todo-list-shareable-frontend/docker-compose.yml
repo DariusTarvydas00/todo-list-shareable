@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  todo-list-shareable-backend:
+    build: .
+    image: "localhost:7002/todo-list-shareable-frontend:${TAG}"
+    ports:
+    - "${PORT_NUMBER}:80"
