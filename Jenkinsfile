@@ -24,6 +24,7 @@ pipeline {
 //                         }
 //                     }
                     steps {
+                    echo 'nanana'
                         //sh 'docker-compose --env-file config/Test.env build api'
 //                        sh 'docker-compose --env-file config/Test.env up -d'
 //                         sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
