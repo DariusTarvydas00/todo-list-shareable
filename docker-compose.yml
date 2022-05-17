@@ -7,7 +7,7 @@ services:
     image: "localhost:7002/web:${IMAGE_TAG}"
     container_name: "${WEB_CONT_NAME}"
     ports:
-      - "${WEB_PORT}:8081"
+      - "${WEB_PORT}:8080"
   api:
     build:
       context: "todo-list-shareable-backend"
