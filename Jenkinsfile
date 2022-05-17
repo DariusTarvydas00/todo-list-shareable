@@ -41,6 +41,7 @@ pipeline {
         stage("Setup manual test env"){
                         steps{
                             dir('todo-list-shareable-backend') {
+                                sh 'docker-compose down'
                                 sh 'docker-compose up -d'
                             }
                         }
