@@ -6,7 +6,7 @@ services:
     working_dir: /var/www/html/app/
     entrypoint: /bin/bash
     expose:
-      - 3264
+      - 8081
     volumes:
       - ./frontend/:/var/www/html/app
     tty: true
