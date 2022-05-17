@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: "todo-list-shareable-frontend"
-    image: "vueap:0.0.2"
+    image: "localhost:7002/web:${IMAGE_TAG}"
     container_name: "${WEB_CONT_NAME}"
     ports:
       - "${WEB_PORT}:80"
