@@ -9,6 +9,10 @@ pipeline {
         nodejs "Node"
     }
 
+    // continuous integration, testing, delivery Jenkinsfile - for continuous delivery; Jenkinsfile.prod - continuous deployment; last stresstest
+    // another pipeline deploy to production: addition steps of testing, UI testing, performance testing
+    // stress testing no waiting
+
     stages {
         stage("Build project"){
             parallel {
@@ -16,25 +20,25 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
-                            sh 'docker-compose down'
-                            sh 'docker rm -fv $(docker ps -aq)'
-                            sh 'docker run -d --rm -p 8081:3000 todo-list-shareable/nestjs-backend'
+                        }
+                        sh 'docker-compose down'
+                        sh 'docker rm -fv $(docker ps -aq)'
+                        sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
+                    }
+                }
+                stage("Build Front-End"){
+                    when {
+                        anyOf {
+                        changeset "todo-list-shareable-frontend/**"
+                        }
+                    }
+                    steps {
+                        dir('todo-list-shareable-frontend') {
+                            sh 'docker build .'
+
                         }
                     }
                 }
-//                 stage("Build Front-End"){
-//                     when {
-//                         anyOf {
-//                         changeset "todo-list-shareable-frontend/**"
-//                         }
-//                     }
-//                     steps {
-//                         dir('todo-list-shareable-frontend') {
-//                             sh 'docker build .'
-//
-//                         }
-//                     }
-//                 }
             }
         }
 //         stage("Setup manual test env"){
