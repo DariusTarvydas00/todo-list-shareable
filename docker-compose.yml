@@ -26,7 +26,7 @@ services:
     image: postgres:latest
     container_name: postgres-container
     ports:
-      - 5432:5432/tcp
+      - 5432:5432
     environment:
       POSTGRES_DB: pg_db
       POSTGRES_PASSWORD: appdbpassword

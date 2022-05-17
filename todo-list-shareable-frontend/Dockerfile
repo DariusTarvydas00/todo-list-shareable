@@ -13,14 +13,12 @@
 #CMD ["nginx", "-g", "daemon off;"]
 
 FROM node:latest
-RUN npm install -g http-server
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-EXPOSE 3264
-CMD ["http-server", "dist"]
+CMD ["node", "dist"]
 
 #FROM node:latest As development
 #WORKDIR /usr/src/app
