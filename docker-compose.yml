@@ -22,17 +22,17 @@ services:
     environment:
       - DB_CONNECTION_STRING=Server=${DB_CONT_NAME},1433;Initial Catalog=WeatherForecast;User ID=sa;Password=yourStrongP@ssword;MultipleActiveResultSets=True;
 
-#  postgres-service:
-#    image: postgres:latest
-#    container_name: postgres-container
-#    ports:
-#      - 55432:5432/tcp
-#    environment:
-#      POSTGRES_DB: pg_db
-#      POSTGRES_PASSWORD: appdbpassword
-#    volumes:
-#      - /var/lib/postgres
-#      - ./dbscripts/postgres:/docker-entrypoint-initdb.d
+  postgres-service:
+    image: postgres:latest
+    container_name: postgres-container
+    ports:
+      - 55432:5432/tcp
+    environment:
+      POSTGRES_DB: pg_db
+      POSTGRES_PASSWORD: appdbpassword
+    volumes:
+      - /var/lib/postgres
+      - ./dbscripts/postgres:/docker-entrypoint-initdb.d
 
 volumes:
   weatherData:
