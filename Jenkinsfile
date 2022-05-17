@@ -16,29 +16,29 @@ pipeline {
     stages {
         stage("Build project"){
             parallel {
-                stage("Build Back-End"){
-                    when {
-                        anyOf {
-                        changeset "todo-list-shareable-frontend/src/**"
-                        changeset "todo-list-shareable-frontend/test/**"
-                        }
-                    }
-                    steps {
-                        dir('todo-list-shareable-backend') {
-                            sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
-                            sh 'docker-compose down'
-                            sh 'docker rm -fv $(docker ps -aq)'
-                            sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
-                        }
-                    }
-                }
+//                 stage("Build Back-End"){
+//                     when {
+//                         anyOf {
+//                         changeset "todo-list-shareable-frontend/src/**"
+//                         changeset "todo-list-shareable-frontend/test/**"
+//                         }
+//                     }
+//                     steps {
+//                         dir('todo-list-shareable-backend') {
+//                             sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
+//                             sh 'docker-compose down'
+//                             sh 'docker rm -fv $(docker ps -aq)'
+//                             sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
+//                         }
+//                     }
+//                 }
                 stage("Build Front-End"){
-                    when {
-                        anyOf {
-                        changeset "todo-list-shareable-frontend/src/**"
-                        changeset "todo-list-shareable-frontend/tests/**"
-                        }
-                    }
+//                     when {
+//                         anyOf {
+//                         changeset "todo-list-shareable-frontend/src/**"
+//                         changeset "todo-list-shareable-frontend/tests/**"
+//                         }
+//                     }
                     steps {
                         dir('todo-list-shareable-frontend') {
                             sh 'docker build -t frontend . -t todo-list-shareable/vue-frontend'
