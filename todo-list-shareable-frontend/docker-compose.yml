@@ -1,12 +1,12 @@
-version: "3.4"
-services:
-  my_frontend:
-    container_name: frontend
-    image: node:lts
-    working_dir: /var/www/html/app/
-    entrypoint: /bin/bash
-    expose:
-      - 8081
-    volumes:
-      - ./frontend/:/var/www/html/app
-    tty: true
+#version: "3.4"
+#services:
+#  my_frontend:
+#    container_name: frontend
+#    image: node:lts
+#    working_dir: /var/www/html/app/
+#    entrypoint: /bin/bash
+#    expose:
+#      - 8081
+#    volumes:
+#      - ./frontend/:/var/www/html/app
+#    tty: true
