@@ -17,25 +17,35 @@ pipeline {
         stage("Build project"){
             parallel {
                 stage("Build Back-End"){
+                    when {
+                        anyOf {
+                            changeset "todo-list-shareable-frontend/src/**"
+                            changeset "todo-list-shareable-frontend/test/**"
+                            }
+                        }
+                    }
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
+                            sh 'docker-compose down'
+                            sh 'docker rm -fv $(docker ps -aq)'
+                            sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
                         }
-                        sh 'docker-compose down'
-                        sh 'docker rm -fv $(docker ps -aq)'
-                        sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
                     }
                 }
                 stage("Build Front-End"){
                     when {
                         anyOf {
-                        changeset "todo-list-shareable-frontend/**"
+                        changeset "todo-list-shareable-frontend/src/**"
+                        changeset "todo-list-shareable-frontend/tests/**"
                         }
                     }
                     steps {
                         dir('todo-list-shareable-frontend') {
-                            sh 'docker build .'
-
+                            sh 'docker build -t frontend . -t todo-list-shareable/vue-frontend'
+                            sh 'docker-compose down'
+                            sh 'docker rm -fv $(docker ps -aq)'
+                            sh 'docker run -d --rm -p 3264:8080 todo-list-shareable/vue-frontend'
                         }
                     }
                 }
