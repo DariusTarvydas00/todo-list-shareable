@@ -5,4 +5,4 @@ RUN npm install
 COPY . .
 EXPOSE 3254
 RUN npm run build
-CMD ["node", "dist/main"]
+CMD ["node", "run", "serve"]
