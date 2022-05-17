@@ -8,8 +8,6 @@ services:
     container_name: "${WEB_CONT_NAME}"
     ports:
       - "${WEB_PORT}:8081"
-    environment:
-      - API_URL=${API_URL}
   api:
     build:
       context: "todo-list-shareable-backend"
