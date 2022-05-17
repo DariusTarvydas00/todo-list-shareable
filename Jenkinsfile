@@ -33,13 +33,13 @@ pipeline {
                 }
             }
         }
-        stage("Setup manual test env"){
-                        steps{
-                            dir('todo-list-shareable-backend') {
-                                sh 'docker-compose --env-file environments/test-manual.env up -d'
-                            }
-                        }
-                        }
+//         stage("Setup manual test env"){
+//                         steps{
+//                             dir('todo-list-shareable-backend') {
+//                                 sh 'docker-compose --env-file environments/test-manual.env up -d'
+//                             }
+//                         }
+//                         }
 //          stage("Unit test"){
 //             parallel{
 //                 stage("Back-End Test"){
