@@ -24,21 +24,21 @@ pipeline {
 //                         }
 //                     }
                     steps {
-                        //dir('todo-list-shareable-backend') {
-                        sh "docker-compose --env-file config/Test.env build api"
-                        script {
-                                            try {
-                                                sh "docker-compose --env-file config/Test.env down"
-                                                }
-                                                finally { }
-                                                }
-
-                                             sh "docker-compose --env-file config/Test.env up -d"
-                            //sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
-                           // sh 'docker-compose down'
-                            //sh 'docker rm -fv $(docker ps -aq)'
-                           // sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
-                       // }
+                        dir('todo-list-shareable-backend') {
+                       // sh "docker-compose --env-file config/Test.env build api"
+//                         script {
+//                                             try {
+//                                                 sh "docker-compose --env-file config/Test.env down"
+//                                                 }
+//                                                 finally { }
+//                                                 }
+//
+//                                              sh "docker-compose --env-file config/Test.env up -d"
+                            sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
+                           sh 'docker-compose down'
+                            sh 'docker rm -fv $(docker ps -aq)'
+                           sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
+                       }
                     }
                 }
                 stage("Build Front-End"){
