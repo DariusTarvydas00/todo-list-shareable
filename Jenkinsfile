@@ -24,10 +24,12 @@ pipeline {
 //                         }
 //                     }
                     steps {
-                        sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
-                        sh 'docker-compose down'
-                        sh 'docker rm -fv $(docker ps -aq)'
-                        sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
+                        sh 'docker-compose --env-file config/Test.env build api'
+//                        sh 'docker-compose --env-file config/Test.env up -d'
+//                         sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
+//                         sh 'docker-compose down'
+//                         sh 'docker rm -fv $(docker ps -aq)'
+//                         sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
                     }
                 }
                 stage("Build Front-End"){
@@ -38,13 +40,28 @@ pipeline {
 //                         }
 //                     }
                     steps {
-                        sh 'docker-compose build -t frontend . -t todo-list-shareable/vue-frontend'
+   //                     sh 'docker-compose build -t frontend . -t todo-list-shareable/vue-frontend'
                         sh 'docker-compose --env-file config/Test.env build web'
-                        sh 'docker-compose --env-file config/Test.env up -d'
+          //              sh 'docker-compose --env-file config/Test.env up -d'
                     }
                 }
             }
         }
+        stage('clean') {
+            steps {
+                script {
+                    try {
+                        sh "docker-compose --env-file config/Test.env down"
+                        }
+                        finally { }
+                        }
+                    }
+        }
+         stage("Deploy") {
+            steps {
+            sh "docker-compose --env-file config/Test.env up -d"
+            }
+         }
 //         stage("Setup manual test env"){
 //                         steps{
 //                             dir('todo-list-shareable-backend') {
