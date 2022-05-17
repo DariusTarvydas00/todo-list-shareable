@@ -9,7 +9,7 @@ const fakeDatabase: FakeDatabase = new FakeDatabase();
 export const ListStore = defineStore({
     id: "listStore",
     state: () => ({
-        loggedInUser: { userName: "" } as User,
+        loggedInUser: { userName: "" },
     }),
     getters: {
 

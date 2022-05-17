@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: () => import('../views/HomeView.vue')
   },
   {
     path: '/lists',
@@ -21,6 +20,26 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/WelcomePageLogin.vue')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/WelcomePageRegister.vue')
+  },
+  {
+    path: '/friends',
+    name: 'friends',
+    component: () => import('../views/FriendsView.vue')
+  },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: () => import('../views/ChatView.vue')
+  }
 ];
 
 const router = createRouter({

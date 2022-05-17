@@ -11,7 +11,7 @@ const fakeDatabase: FakeDatabase = new FakeDatabase();
 export const UserStore = defineStore({
   id: "userStore",
   state: () => ({
-    loggedInUser: { userName: "" } as User,
+    loggedInUser: { userName: "" },
   }),
   getters: {
     //new
@@ -57,13 +57,13 @@ export const UserStore = defineStore({
     createUser(name: string, email: string, password: string) {
       userService
         .createUser(name, email, password)
-        .then((user) => (this.loggedInUser = user))
+        .then((user) => (this.loggedInUser))
         .catch((err) => console.log(err));
     },
     login(email: string, password: string){
       userService
           .login(email,password)
-          .then((user) => (this.loggedInUser = user))
+          .then((user) => (this.loggedInUser))
           .catch((err) => console.log(err))
     }
     },

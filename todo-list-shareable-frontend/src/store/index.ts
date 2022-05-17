@@ -1,9 +1,8 @@
 import { createStore } from "vuex";
-import {User} from "@/models/User";
 
 export default createStore({
   state: {
-    loggedInUser: { userName: "" } as User,
+    loggedInUser: { userName: "" },
   },
   getters: {},
   mutations: {},

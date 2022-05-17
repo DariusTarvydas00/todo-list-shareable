@@ -25,10 +25,10 @@
 
 </template>
 
-<script>
+<script lang="ts">
 import {ref} from "vue";
-import {User} from "../models/User";
-import {UserStore} from "../stores/userStore";
+import {User} from "@/models/User";
+import {UserStore} from "@/store/userStore";
 
 export default {
   setup(){
@@ -39,22 +39,22 @@ export default {
 
 
     function addNewFriend() {
-
-      let friend = new User(1, newFriend.value);
-      console.log("User created and added " + friend.userId + friend.userName)
-      userStore.cUser(friend)
-      friends.value.push(friend);
-      newFriend.value = '';
+      //
+      // let friend = new User(1, newFriend.value);
+      // console.log("User created and added " + friend.userId + friend.userName)
+      // userStore.cUser(friend)
+      // friends.value.push(friend);
+      // newFriend.value = '';
     }
 
     function searchFriend() {
-      let searched = userStore.rUser(searchFriends.value)
-      console.log("User searched and added" + searched.userId + searched.userName)
-      friends.value.push(searched);
-      newFriend.value = '';
+      // let searched = userStore.rUser(searchFriends.value)
+      // console.log("User searched and added" + searched.userId + searched.userName)
+      // friends.value.push(searched);
+      // newFriend.value = '';
     }
 
-    function removeFriend(index) {
+    function removeFriend(index:any) {
       friends.value.splice(index, 1);
     }
 

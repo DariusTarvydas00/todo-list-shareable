@@ -1,11 +1,15 @@
 export class User {
     userId: number;
-    userName: string;
+    username: string;
+    password: string;
+    email: string;
     listArray: [];
 
-    public constructor(id: number, name: string, arr: []) {
-        this.userName = name;
+    public constructor(id: number, username: string, password: string, email:string, arr: []) {
         this.userId = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
         this.listArray = arr;
     }
 }
