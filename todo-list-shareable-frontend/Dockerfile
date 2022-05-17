@@ -13,7 +13,7 @@
 #CMD ["nginx", "-g", "daemon off;"]
 
 FROM node:latest As development
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
