@@ -44,7 +44,7 @@ pipeline {
                             sh 'docker build -t backend . -t todo-list-shareable/nestjs-frontend'
                             //sh 'docker-compose down'
                             sh 'docker rm -fv $(docker ps -aq)'
-                            sh 'docker run -d --rm -p 3264:5000 todo-list-shareable/nestjs-frontend'
+                            sh 'docker run -d --rm -p 3264:8081 todo-list-shareable/nestjs-frontend'
                             //sh 'docker build -t frontend . -t todo-list-shareable/vue-frontend'
                             //sh 'docker-compose --env-file ../config/Test.env build web'
                             //sh 'docker-compose down'
