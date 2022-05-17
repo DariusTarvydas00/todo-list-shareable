@@ -45,33 +45,33 @@ pipeline {
                             }
                         }
                         }
-         stage("Unit test"){
-            parallel{
-                stage("Back-End Test"){
-                    when {
-                        anyOf {
-                        changeset "todo-list-shareable-backend/**"
-                        }
-                    }
-                    steps{
-                        dir('todo-list-shareable-backend') {
-                        sh 'npm run test'
-                        }
-                    }
-                }
-                stage("Front-End Test"){
-                    when {
-                        anyOf {
-                        changeset "todo-list-shareable-frontend/**"
-                        }
-                    }
-                    steps{
-                        dir('todo-list-shareable-frontend') {
-                        sh "npm run test:unit"
-                        }
-                    }
-                }
-            }
-         }
+//          stage("Unit test"){
+//             parallel{
+//                 stage("Back-End Test"){
+//                     when {
+//                         anyOf {
+//                         changeset "todo-list-shareable-backend/**"
+//                         }
+//                     }
+//                     steps{
+//                         dir('todo-list-shareable-backend') {
+//                         sh 'npm run test'
+//                         }
+//                     }
+//                 }
+//                 stage("Front-End Test"){
+//                     when {
+//                         anyOf {
+//                         changeset "todo-list-shareable-frontend/**"
+//                         }
+//                     }
+//                     steps{
+//                         dir('todo-list-shareable-frontend') {
+//                         sh "npm run test:unit"
+//                         }
+//                     }
+//                 }
+//             }
+//          }
     }
 }
