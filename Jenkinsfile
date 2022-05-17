@@ -26,6 +26,7 @@ pipeline {
                     steps {
                         //dir('todo-list-shareable-backend') {
                         sh "docker-compose --env-file config/Test.env build api"
+                        sh "docker-compose --env-file config/Test.env build web"
                         script {
                                             try {
                                                 sh "docker-compose --env-file config/Test.env down"
