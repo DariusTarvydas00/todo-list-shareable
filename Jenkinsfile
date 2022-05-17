@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage("Build project"){
             parallel {
-//                 stage("Build Back-End"){
+                stage("Build Back-End"){
 //                     when {
 //                         anyOf {
 //                         changeset "todo-list-shareable-frontend/src/**"
@@ -31,7 +31,7 @@ pipeline {
                             sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
                         }
                     }
-//                 }
+                }
                 stage("Build Front-End"){
 //                     when {
 //                         anyOf {
