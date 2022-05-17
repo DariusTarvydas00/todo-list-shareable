@@ -42,7 +42,7 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-frontend') {
                             sh 'docker build -t frontend . -t todo-list-shareable/vue-frontend'
-                            sh 'docker-compose --env-file ../config/Test.env build api'
+                            sh 'docker-compose --env-file ../config/Test.env build web'
                             sh 'docker-compose down'
                             sh 'docker run -d --rm -p 8081:8081 todo-list-shareable/vue-frontend'
                         }
