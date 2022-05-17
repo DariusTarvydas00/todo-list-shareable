@@ -11,6 +11,9 @@ module.exports = defineConfig({
           type: "javascript/auto"
         }
       ]
-    }
+    },
   },
+  devServer: {
+    port: 3264,
+  }
 });
