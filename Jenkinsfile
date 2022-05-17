@@ -43,7 +43,7 @@ pipeline {
                         dir('todo-list-shareable-frontend') {
                             sh 'docker build -t frontend . -t todo-list-shareable/vue-frontend'
                             sh 'docker-compose down'
-                            sh 'docker run -d --rm -p 8080:8080 todo-list-shareable/vue-frontend'
+                            sh 'docker run -d --rm -p 8081:8080 todo-list-shareable/vue-frontend'
                         }
                     }
                 }
