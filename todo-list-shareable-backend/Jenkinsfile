@@ -1,0 +1,55 @@
+def docker_user_credentialsId = '<DOCKER-USER>'
+def docker_repository = '<CUSTOM-REGISTRY>'
+
+def pg = docker.image('postgres:12-alpine')
+def flyway = docker.image('flyway/flyway:7-alpine')
+
+pipeline {
+    agent none
+
+    options {
+        buildDiscarder(logRotator(daysToKeepStr: '90', numToKeepStr: '20', artifactDaysToKeepStr: '90', artifactNumToKeepStr: '20'))
+        timeout(time: 120, unit: 'MINUTES') 
+    }
+
+    stages {
+        stage('db migration test') {
+            agent { 
+                label 'docker && linux'
+            }
+
+            environment {
+                PGHOST = 'db'
+                PGPORT = '5432'
+                PGDATABASE = 'postgres'
+                PGUSER = 'postgres'
+                PGPASSWORD = 'postgres'
+            }
+
+            steps {
+                script {
+                    docker.withRegistry(docker_repository, docker_user_credentialsId) {
+                        def db = pg.withRun(
+                            "-v ${WORKSPACE}/docker/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh -e POSTGRES_USER=${env.PGUSER} -e POSTGRES_PASSWORD=${env.PGPASSWORD} -e POSTGRES_DB=${env.PGDATABASE}"
+                        ) { db ->
+                            pg.inside("--link ${db.id}:${env.PGHOST}") {                                
+                                sh '''
+                                    echo "$(date) - waiting for database to start"
+                                    while ! pg_isready
+                                    do
+                                        sleep 10
+                                    done
+                                '''
+                            }
+                            flyway.withRun("-e FLYWAY_LOCATIONS=filesystem:/tmp/database/server,filesystem:/tmp/database/local -e FLYWAY_URL=jdbc:postgresql://${PGHOST}:${env.PGPORT}/${env.PGDATABASE} -e FLYWAY_USER=${env.PGUSER} -e FLYWAY_PASSWORD=${env.PGPASSWORD} -v ${WORKSPACE}/database/local:/tmp/database/local -v ${WORKSPACE}/database/server:/tmp/database/server --link ${db.id}:db", "migrate") { f ->
+                                sh "docker logs -f ${f.id}"
+                                def output = sh script: "docker inspect ${f.id} --format='{{.State.ExitCode}}'", returnStdout: true
+                                sh "exit ${output}"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+ }
