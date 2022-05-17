@@ -19,7 +19,7 @@ RUN npm install
 COPY . .
 EXPOSE 3264
 RUN npm run build
-CMD ["node", "dist"]
+CMD ["npm", "run", "serve"]
 
 #FROM node:latest As development
 #WORKDIR /usr/src/app
