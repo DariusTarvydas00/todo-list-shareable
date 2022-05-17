@@ -42,7 +42,7 @@ export default {
       //
       // let friend = new User(1, newFriend.value);
       // console.log("User created and added " + friend.userId + friend.userName)
-      // userStore.cUser(friend)
+      // userStore.cUser(friend)sd
       // friends.value.push(friend);
       // newFriend.value = '';
     }
