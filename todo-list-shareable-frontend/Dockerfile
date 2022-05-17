@@ -20,6 +20,11 @@ COPY . .
 RUN npm run build
 CMD ["node", "index.js"]
 
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx","-g","daemon off"]
+
 #FROM node:latest As development
 #WORKDIR /usr/src/app
 #COPY package*.json ./
