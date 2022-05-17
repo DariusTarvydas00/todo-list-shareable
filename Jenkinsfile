@@ -13,14 +13,9 @@ pipeline {
         stage("Build project"){
             parallel {
                 stage("Build Back-End"){
-                    when {
-                        anyOf {
-                        changeset "todo-list-shareable-backend/**"
-                        }
-                    }
                     steps {
                         dir('todo-list-shareable-backend') {
-                            sh 'docker build -t backend .'
+                            sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
                         }
                     }
                 }
