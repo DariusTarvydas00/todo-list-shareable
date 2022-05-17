@@ -19,9 +19,8 @@ pipeline {
                 stage("Build Back-End"){
                     when {
                         anyOf {
-                            changeset "todo-list-shareable-frontend/src/**"
-                            changeset "todo-list-shareable-frontend/test/**"
-                            }
+                        changeset "todo-list-shareable-frontend/src/**"
+                        changeset "todo-list-shareable-frontend/test/**"
                         }
                     }
                     steps {
@@ -86,4 +85,5 @@ pipeline {
 //                 }
 //             }
 //          }
+       }
 }
