@@ -17,7 +17,7 @@ pipeline {
                         dir('todo-list-shareable-backend') {
                             sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
                             sh 'docker kill $(docker ps -q)'
-                            sh 'docker run -p 8081:3000 todo-list-shareable/nestjs-backend -d'
+                            sh 'docker run -d --rm -p 8081:3000 todo-list-shareable/nestjs-backend'
                         }
                     }
                 }
