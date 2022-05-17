@@ -1,11 +1,20 @@
 FROM node:latest As development
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install --only=development
+RUN npm install
 COPY . .
 EXPOSE 3264
 RUN npm run build
 CMD ["node", "dist/index"]
+
+#FROM node:latest As development
+#WORKDIR /usr/src/app
+#COPY package*.json ./
+#RUN npm install --only=development
+#COPY . .
+#EXPOSE 3264
+#RUN npm run build
+#CMD ["node", "dist/index"]
 
 #FROM node:latest As production
 #ARG NODE_ENV=production
