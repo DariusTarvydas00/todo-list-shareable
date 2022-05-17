@@ -32,7 +32,7 @@ pipeline {
                                                 }
                                                 finally { }
                                                 }
-                                             }
+
                                              sh "docker-compose --env-file config/Test.env up -d"
                             //sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
                            // sh 'docker-compose down'
@@ -101,7 +101,7 @@ pipeline {
 //                 }
 //             }
 //          }
-
+       }
 }
 
 
