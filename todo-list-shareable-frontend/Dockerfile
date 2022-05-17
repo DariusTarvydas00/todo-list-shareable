@@ -12,14 +12,14 @@
 #EXPOSE 80
 #CMD ["nginx", "-g", "daemon off;"]
 
-FROM node:latest As development
+FROM node:latest
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 3264
 RUN npm run build
-CMD ["node", "dist/index"]
+CMD ["node", "dist"]
 
 #FROM node:latest As development
 #WORKDIR /usr/src/app
