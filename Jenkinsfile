@@ -21,7 +21,6 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'docker build -t backend .'
-                            sh 'docker run backend'
                         }
                     }
                 }

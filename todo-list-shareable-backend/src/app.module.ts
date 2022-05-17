@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TasksModule } from './tasks/tasks.module';
 //Modules are an effective way to organize components by a closely related set of capabilities (per feature)
-// Decorator provides metadata that nest uses to organize the application structure
+// Decorator provides metadata that nest  uses to organize the application structure
 // Module is a schematic
 @Module({
   // list of modules required by these modules. any exported provider by these modules will now be available via dependency injection
