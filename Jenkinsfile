@@ -16,21 +16,23 @@ pipeline {
                     steps {
                         dir('todo-list-shareable-backend') {
                             sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
+                            sh 'docker run -p 8081:3000 todo-list-shareable/nestjs-backend'
                         }
                     }
                 }
-                stage("Build Front-End"){
-                    when {
-                        anyOf {
-                        changeset "todo-list-shareable-frontend/**"
-                        }
-                    }
-                    steps {
-                        dir('todo-list-shareable-frontend') {
-                            sh 'docker build .'
-                        }
-                    }
-                }
+//                 stage("Build Front-End"){
+//                     when {
+//                         anyOf {
+//                         changeset "todo-list-shareable-frontend/**"
+//                         }
+//                     }
+//                     steps {
+//                         dir('todo-list-shareable-frontend') {
+//                             sh 'docker build .'
+//
+//                         }
+//                     }
+//                 }
             }
         }
 //         stage("Setup manual test env"){
