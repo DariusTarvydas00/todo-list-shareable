@@ -23,14 +23,14 @@ pipeline {
 //                         changeset "todo-list-shareable-frontend/test/**"
 //                         }
 //                     }
-//                     steps {
-//                         dir('todo-list-shareable-backend') {
-//                             sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
-//                             sh 'docker-compose down'
-//                             sh 'docker rm -fv $(docker ps -aq)'
-//                             sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
-//                         }
-//                     }
+                    steps {
+                        dir('todo-list-shareable-backend') {
+                            sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
+                            sh 'docker-compose down'
+                            sh 'docker rm -fv $(docker ps -aq)'
+                            sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
+                        }
+                    }
 //                 }
                 stage("Build Front-End"){
 //                     when {
