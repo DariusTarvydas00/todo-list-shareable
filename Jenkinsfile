@@ -64,12 +64,7 @@ pipeline {
              parallel {
                 stage("Deliver to registry back-end"){
                     steps {
-                        sh "docker-compose --env-file config/test.env push api"
-                    }
-                }
-                stage("Deliver to registry back-frontend"){
-                    steps {
-                        sh "docker-compose --env-file config/test.env push web"
+                        sh "docker-compose --env-file config/test.env push"
                     }
                 }
              }
