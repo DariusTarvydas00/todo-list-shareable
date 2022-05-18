@@ -6,7 +6,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // Module is a schematic
 @Module({
   // list of modules required by these modules. any exported provider by these modules will now be available via dependency injection
-  imports: [TasksModule],
+  imports: [
+      TasksModule,
+      TypeOrmModule.forRoot({
+        type: 'postgres',
+        host: 'localhost',
+        port: 5432,
+        username: 'postgres',
+        password: 'postgres',
+        database: 'task-management',
+        autoLoadEntities: true,
+        synchronize: true
+      })
+  ],
   // array of controllers to be instantiated     sdf sdfsssssswithin the module
   // responsible for handling incoming requests and returning responses to the client
   // bound to a specific path (for example "/tasks" for the tasks resource)
