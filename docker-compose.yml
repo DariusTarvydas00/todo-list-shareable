@@ -4,14 +4,14 @@ services:
   web:
     build:
       context: "todo-list-shareable-frontend"
-    image: "localhost:7002/web:${IMAGE_TAG}"
+    image: "todo-list-shareable-frontend:${IMAGE_TAG}"
     container_name: "${WEB_CONT_NAME}"
     ports:
       - "${WEB_PORT}:8080"
   api:
     build:
       context: "todo-list-shareable-backend"
-    image: "localhost:7002/api:${IMAGE_TAG}"
+    image: "todo-list-shareable-backend:${IMAGE_TAG}"
     container_name: "${API_CONT_NAME}"
     ports:
       - "${API_PORT}:3000"
