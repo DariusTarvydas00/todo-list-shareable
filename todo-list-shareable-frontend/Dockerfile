@@ -11,6 +11,13 @@
 #COPY --from=build-stage /app/dist /usr/share/nginx/html
 #EXPOSE 80
 #CMD ["nginx", "-g", "daemon off;"]
+FROM node:latest as development-stage
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 8080
+CMD [ "npm", "run", "serve" ]
 
 FROM nginx:stable-alpine as production-stage
 COPY . .
