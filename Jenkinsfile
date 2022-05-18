@@ -17,41 +17,13 @@ pipeline {
         stage("Build project"){
             parallel {
                 stage("Build Back-End"){
-//                     when {
-//                         anyOf {
-//                         changeset "todo-list-shareable-frontend/src/**"
-//                         changeset "todo-list-shareable-frontend/test/**"
-//                         }
-//                     }
                     steps {
-                        //dir('todo-list-shareable-backend') {
                         sh "docker-compose --env-file config/Test.env build api"
-                        sh "docker-compose --env-file config/Test.env build web"
-                        script {
-                                            try {
-                                                sh "docker-compose --env-file config/Test.env down"
-                                                }
-                                                finally { }
-                                                }
-
-                                             sh "docker-compose --env-file config/Test.env up -d"
-                            //sh 'docker build -t backend . -t todo-list-shareable/nestjs-backend'
-                           // sh 'docker-compose down'
-                            //sh 'docker rm -fv $(docker ps -aq)'
-                           // sh 'docker run -d --rm -p 3254:3000 todo-list-shareable/nestjs-backend'
-                       // }
                     }
                 }
                 stage("Build Front-End"){
-//                     when {
-//                         anyOf {
-//                         changeset "todo-list-shareable-frontend/src/**"
-//                         changeset "todo-list-shareable-frontend/tests/**"
-//                         }
-//                     }
                     steps {
-                        dir('todo-list-shareable-frontend') {
-                        echo 'sadasd'
+                        sh "docker-compose --env-file config/Test.env build web"
 //                             sh 'docker build -t backend . -t todo-list-shareable/nestjs-frontend'
 //                             //sh 'docker-compose down'
 //                             sh 'docker rm -fv $(docker ps -aq)'
@@ -60,20 +32,23 @@ pipeline {
                             //sh 'docker-compose --env-file ../config/Test.env build web'
                             //sh 'docker-compose down'
                             //sh 'docker run -d --rm -p 8081:8081 todo-list-shareable/vue-frontend'
-                        }
                         //sh 'docker-compose --env-file config/Test.env build web'
                         //sh "docker-compose --env-file config/Test.env up -d"
                     }
                 }
             }
         }
-//         stage("Setup manual test env"){
-//                         steps{
-//                             dir('todo-list-shareable-backend') {
-//                                 sh 'docker-compose --env-file environments/test-manual.env up -d'
-//                             }
-//                         }
-//                         }
+        stage("Setup manual test env"){
+            steps{
+                script {
+                    try {
+                    sh "docker-compose --env-file config/Test.env down"
+                        }
+                    finally { }
+                }
+                    sh "docker-compose --env-file config/Test.env up -d"
+            }
+        }
 //          stage("Unit test"){
 //             parallel{
 //                 stage("Back-End Test"){
