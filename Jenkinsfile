@@ -18,12 +18,12 @@ pipeline {
             parallel {
                 stage("Build Back-End"){
                     steps {
-                        sh "docker-compose --env-file config/Test.env build api"
+                        sh "docker-compose --env-file config/test.env build api"
                     }
                 }
                 stage("Build Front-End"){
                     steps {
-                        sh "docker-compose --env-file config/Test.env build web"
+                        sh "docker-compose --env-file config/test.env build web"
                     }
                 }
             }
@@ -32,11 +32,11 @@ pipeline {
             steps{
                 script {
                     try {
-                    sh "docker-compose --env-file config/Test.env down"
+                    sh "docker-compose --env-file config/test.env down"
                         }
                     finally { }
                 }
-                    sh "docker-compose --env-file config/Test.env up -d"
+                    sh "docker-compose --env-file config/test.env up -d"
             }
         }
         stage("Unit test"){
