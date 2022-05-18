@@ -12,6 +12,7 @@ services:
     build:
       context: "todo-list-shareable-backend"
     image: "localhost:7002/api:${IMAGE_TAG}"
+    restart: always
     container_name: "${API_CONT_NAME}"
     ports:
       - "${API_PORT}:3000"
@@ -23,11 +24,12 @@ services:
   postgres-service:
     image: postgres:latest
     container_name: postgres-container
+    restart: always
     ports:
       - 5432:5432
     environment:
       POSTGRES_DB: task-management
-      POSTGRES_USERNAME: postgres
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
       - /var/lib/postgres
