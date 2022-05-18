@@ -61,9 +61,18 @@ pipeline {
             }
         }
         stage("Delivery to registry"){
-            steps{
-                sh "docker-compose --env-file config/test.env push asd"
-            }
+             parallel {
+                stage("Deliver to registry back-end"){
+                    steps {
+                        sh "docker-compose --env-file config/test.env push api"
+                    }
+                }
+                stage("Deliver to registry back-frontend"){
+                    steps {
+                        sh "docker-compose --env-file config/test.env push web"
+                    }
+                }
+             }
         }
     }
 }
