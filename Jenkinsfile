@@ -24,16 +24,6 @@ pipeline {
                 stage("Build Front-End"){
                     steps {
                         sh "docker-compose --env-file config/Test.env build web"
-//                             sh 'docker build -t backend . -t todo-list-shareable/nestjs-frontend'
-//                             //sh 'docker-compose down'
-//                             sh 'docker rm -fv $(docker ps -aq)'
-//                             sh 'docker run -d --rm -p 3264:5000 todo-list-shareable/nestjs-frontend'
-                            //sh 'docker build -t frontend . -t todo-list-shareable/vue-frontend'
-                            //sh 'docker-compose --env-file ../config/Test.env build web'
-                            //sh 'docker-compose down'
-                            //sh 'docker run -d --rm -p 8081:8081 todo-list-shareable/vue-frontend'
-                        //sh 'docker-compose --env-file config/Test.env build web'
-                        //sh "docker-compose --env-file config/Test.env up -d"
                     }
                 }
             }
@@ -49,35 +39,27 @@ pipeline {
                     sh "docker-compose --env-file config/Test.env up -d"
             }
         }
-//          stage("Unit test"){
-//             parallel{
-//                 stage("Back-End Test"){
-//                     when {
-//                         anyOf {
-//                         changeset "todo-list-shareable-backend/**"
-//                         }
-//                     }
-//                     steps{
-//                         dir('todo-list-shareable-backend') {
-//                         sh 'npm run test'
-//                         }
-//                     }
-//                 }
-//                 stage("Front-End Test"){
-//                     when {
-//                         anyOf {
-//                         changeset "todo-list-shareable-frontend/**"
-//                         }
-//                     }
-//                     steps{
-//                         dir('todo-list-shareable-frontend') {
-//                         sh "npm run test:unit"
-//                         }
-//                     }
-//                 }
-//             }
-//          }
-       }
+        stage("Unit test"){
+            parallel{
+                stage("Back-End Test"){
+                    steps{
+                        dir('todo-list-shareable-backend') {
+                        echo 'running api tests'
+                        //sh 'npm run test'
+                        }
+                    }
+                }
+                stage("Front-End Test"){
+                    steps{
+                        dir('todo-list-shareable-frontend') {
+                        echo 'running web tests'
+                        //sh "npm run test:unit"
+                        }
+                    }
+                }
+            }
+        }
+        }
 }
 
 
