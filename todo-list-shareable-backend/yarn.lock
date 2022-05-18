@@ -5450,7 +5450,7 @@
   "resolved" "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
   "version" "0.0.6"
 
-"typeorm@^0.2.34", "typeorm@^0.3.6":
+"typeorm@^0.2.34":
   "integrity" "sha512-DRqgfqcelMiGgWSMbBmVoJNFN2nPNA3EeY2gC324ndr2DZoGRTb9ILtp2oGVGnlA+cu5zgQ6it5oqKFNkte7Aw=="
   "resolved" "https://registry.npmjs.org/typeorm/-/typeorm-0.3.6.tgz"
   "version" "0.3.6"
