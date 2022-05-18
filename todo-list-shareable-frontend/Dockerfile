@@ -12,10 +12,13 @@
 #EXPOSE 80
 #CMD ["nginx", "-g", "daemon off;"]
 
-FROM nginx:stable-alpine as production-stage
+FROM node:latest
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
 COPY . .
 EXPOSE 8080
-CMD ["nginx", "-g", "daemon off;"]
+CMD [ "npm", "run", "serve" ]
 
 #FROM node:latest As development
 #WORKDIR /usr/src/app
