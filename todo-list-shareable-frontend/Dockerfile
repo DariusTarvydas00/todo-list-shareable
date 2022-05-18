@@ -14,7 +14,6 @@
 
 FROM nginx:stable-alpine as production-stage
 COPY . .
-EXPOSE 8081
 CMD ["nginx", "-g", "daemon off;"]
 
 #FROM node:latest As development
