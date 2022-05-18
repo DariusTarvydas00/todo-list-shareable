@@ -18,7 +18,7 @@ services:
     depends_on:
       - "postgres-service"
     environment:
-      - DB_CONNECTION_STRING=Server=${DB_CONT_NAME},1433;User ID=sa;Password=yourStrongP@ssword;MultipleActiveResultSets=True;
+      - DB_CONNECTION_STRING=Server=${DB_CONT_NAME},1433;User ID=postgres;Password=postgres;MultipleActiveResultSets=True;
 
   postgres-service:
     image: postgres:latest
@@ -26,8 +26,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: pg_db
-      POSTGRES_PASSWORD: appdbpassword
+      POSTGRES_DB: task-management
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - /var/lib/postgres
       - ./dbscripts/postgres:/docker-entrypoint-initdb.d
