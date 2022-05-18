@@ -18,7 +18,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 8080
-CMD [ "npm", "run", "serve" ]
+CMD [ "node", "start" ]
 
 #FROM node:latest As development
 #WORKDIR /usr/src/app
